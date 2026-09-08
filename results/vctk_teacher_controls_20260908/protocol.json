@@ -1,0 +1,20 @@
+{
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "epochs": 4,
+  "private_rows": 360,
+  "dev_rows": 120,
+  "test_rows": 120,
+  "architecture": "SmallCNNMel 32x80 with DSAF features from strict VCTK bundle",
+  "optimizer": "AdamW lr0.001 wd0.0001 batch64",
+  "losses": [
+    "ce",
+    "balanced_softmax"
+  ],
+  "counts": "private, non-private controls; same fixed-count BS convention as strict DP teacher",
+  "checkpoint": "maximum development Macro-F1, earliest ties",
+  "purpose": "replace old single seed eight epoch contextual teacher row; no DP claim for these controls"
+}

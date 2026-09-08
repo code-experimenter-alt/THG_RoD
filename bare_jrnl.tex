@@ -1,0 +1,243 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[letterpaper,margin=1.02in,left=1.025in,includefoot,footskip=18pt]{geometry}
+\pagestyle{plain}
+\setlength{\textfloatsep}{7pt plus 1pt minus 2pt}
+\setlength{\dbltextfloatsep}{7pt plus 1pt minus 2pt}
+\setlength{\floatsep}{6pt plus 1pt minus 2pt}
+\setlength{\dblfloatsep}{6pt plus 1pt minus 2pt}
+\renewcommand{\arraystretch}{0.94}
+\setlength{\parskip}{0pt plus 0.4pt}
+\usepackage{cite}
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{amssymb,amsfonts,amsthm}
+\usepackage{graphicx,booktabs,multirow,array}
+\usepackage{xcolor,url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\hyphenation{post-pro-cess-ing class-i-fi-ca-tion}
+\begin{document}
+\bstctlcite{IEEEcompactrefs}
+\title{Teacher-Health-Guided Release of Differentially Private Speech Classifiers under Class Imbalance}
+\author{Yadi Wen, Yaxuan Wang, Dan Yu, Rong Du, Yue Fu, Yongle Chen\\
+\IEEEauthorblockA{Shanxi Key Laboratory of Industrial Internet Security, Taiyuan University of Technology, China\\
+Emails: \{2023005322, 2023005749\}@link.tyut.edu.cn, \{yudan, durong, fuyue, chenyongle\}@tyut.edu.cn}}
+\maketitle
+\thispagestyle{plain}
+
+\begin{abstract}
+A differentially private speech teacher can be safe to release yet provide unreliable supervision under class imbalance. We study this distinction through Teacher-Conditioned Release Distillation, which chooses exclusion, attenuation, or full use of teacher targets before training the released student. The policy combines class-balanced teacher diagnostics with permitted hard-label learning and distillation; privacy follows separately by post-processing of the accounted teacher. A Common Voice 17.0 study uses 50,000 training clips, ten speaker-grouped partitions, five noise levels, and calibration independent of checkpoint selection. Teacher conditions and student objectives are paired. Across the fixed noise grid, the policy improves mean balanced accuracy by 2.20 percentage points over hard-label training and by 1.29 points over a binary teacher-balanced-accuracy route, without a corresponding improvement in macro-averaged F-measure over hard labels. Component checks distinguish routing gains from predictive value: the composite does not predict distillation gain better than balanced accuracy alone. Likewise, instance-aware attenuation does not outperform a constant, mean-matched reduction of teacher influence. Speaker-cluster uncertainty changes certification and can forgo beneficial supervision. Smaller accent and emotion studies supply low-health and heterogeneous-transfer counterexamples. The results support teacher-conditioned supervision as an explicit release decision while identifying when simple attenuation, direct student validation, or hard-label learning remains competitive.
+\end{abstract}
+\begin{IEEEkeywords}
+Differential privacy, speech classification, model release, knowledge distillation, class imbalance, teacher reliability.
+\end{IEEEkeywords}
+\IEEEpeerreviewmaketitle
+
+\section{Introduction}
+\label{sec:intro}
+\IEEEPARstart{S}{peech} classifiers support voice interaction and affective computing~\cite{baltrusaitis2019multimodalSurvey}, but released checkpoints permit inference attacks~\cite{shokri2017membershipInference,fredrikson2015modelInversion}. Differential privacy (DP) bounds individual-record influence~\cite{dwork2006DP,dwork2014}; DP-SGD applies per-example clipping and Gaussian noise~\cite{abadi2016deepLearningDP,mironov2017rdp}. Under imbalance, these operations can weaken minority learning while accuracy conceals majority collapse~\cite{chen2020understandingClipping,tran2021dpimbalance,bagdasaryan2019dpimpact}. A privacy-eligible teacher can consequently provide unreliable student supervision.
+
+
+We study an audio-only student trained from a private teacher and permitted labeled auxiliary/development speech. \emph{Teacher health} summarizes the class-balanced structure of development predictions. Teacher-Conditioned Release Distillation (TCRD) uses it to exclude, attenuate, or fully use teacher targets before student optimization. Selecting among already trained students uses more direct evidence but requires those candidates; a single teacher-metric threshold is an equally inexpensive alternative. We compare both.
+
+
+
+Our earlier work~\cite{wen2026private} studied the private-teacher/offline-student protocol and teacher stabilization. Here we study how teacher supervision enters release:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{Supervision selection:} exclusion, attenuation, and full KD are explicit release actions, distinct from the privacy eligibility of teacher access.
+\item \textbf{Routing uncertainty:} confusion-matrix estimation yields health-region probabilities, confidence margins, and a deterministic limit, rather than a student-utility guarantee.
+\item \textbf{Paired evidence:} a ten-seed, 50,000-clip CV17 study tests independent calibration, component increment, and mean-matched attenuation; smaller speech studies expose missed beneficial transfer.
+\end{itemize}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.84\textwidth]{figure/fig1_old_vector.pdf}
+\caption{Teacher-health-guided private speech release, illustrated with a frozen-encoder teacher.}
+\label{fig:pipeline}
+\end{figure*}
+
+\section{Related Work}
+\label{sec:related_work}
+\subsection{Private Learning and Model Transcription}
+DP-SGD with privacy-random-variable (PRV) accounting privatizes training~\cite{abadi2016deepLearningDP,mironov2017rdp,yousefpour2021opacus}; PATE instead privatizes ensemble labels from disjoint private shards~\cite{papernot2017pate,papernot2018pate}. Neither specifies whether a particular teacher should supervise the student.
+
+Model Conversion via Differentially Private Data-Free Distillation~\cite{liu2023datafree} transcribes a teacher using a generator and private gradients; Privacy-Preserving Model Transcription With Differentially Private Synthetic Distillation~\cite{liu2026syntheticdistill} uses noisy supervision in a teacher--student--generator framework. Discriminative--Generative Distillation~\cite{ge2023discriminativegenerative} combines synthetic data, private ensemble labels, and semi-supervised learning. DP-SAD~\cite{liu2024stochasticadversarial} privatizes cross-model diffusion gradients, while Private Gradient Estimation~\cite{liu2024privategradient} perturbs score-estimation projections for generative modeling. TCRD instead selects supervision from an already accounted teacher and permitted labeled speech.
+
+
+\subsection{Adaptive Distillation and Speech Representations}
+Knowledge distillation (KD) transfers structure~\cite{hinton2015distilling}, including in acoustic, representation-compression, and emotion tasks~\cite{chebotar2016distilling,chang2022distilhubert,srinivasan2022representation,shome2024speech}. Difficulty-level KD compares original/pruned teacher predictions~\cite{ham2024difficultykd}; curriculum-temperature KD (CTKD) learns temperature adversarially~\cite{li2023ctkd}. We compare published global-T CTKD with TCRD's teacher-level objective choice, including complete exclusion. Uncertainty-weighted cross-entropy (CE) and linear-temperature KD are separately labeled probes.
+
+
+Our wav2vec 2.0, HuBERT, and WavLM encoders~\cite{baevski2020wav2vec2,hsu2021hubert,chen2022wavlm} provide contrasting teacher--student conditions. Unlike private acoustic-adapter or ASR-encoder learning~\cite{ho2023differentially,chauhan2024training}, these encoders remain frozen.
+
+\subsection{Class Imbalance and Teacher Health}
+Focal loss, class-balanced loss, logit adjustment, and Balanced Softmax (BS) address imbalance~\cite{lin2017focal,cui2019classbalanced,menon2021longtail,ren2020balanced}; private learning can alter class-wise utility~\cite{bagdasaryan2019dpimpact,tran2021dpimbalance,ganev2022robinhood}. We use established BS and test teacher health separately from student transfer.
+
+\section{Problem Formulation and Method}
+\label{sec:method}
+\subsection{Release Setting and Privacy Boundary}
+\label{sec:release_private_learning}
+Let $D_{\mathrm{priv}}$ denote private speech and $D_{\mathrm{aux}},D_{\mathrm{dev}}$ permitted labeled auxiliary/development data. An example-level DP mechanism satisfies
+\begin{equation}
+\Pr[\mathcal M(D)\in S]\le e^\varepsilon\Pr[\mathcal M(D')\in S]+\delta
+\label{eq:dp}
+\end{equation}
+for neighboring private datasets and measurable $S$. Adjacency and sampling follow the accountant; speaker-disjoint splits do not imply speaker-level DP.
+
+Let $Z_t=\mathcal M(D_{\mathrm{priv}})$ include the entire accounted trajectory inspected for development-based checkpoint selection. The release map is
+\begin{equation}
+\theta_s=\mathcal F(Z_t,D_{\mathrm{aux}},D_{\mathrm{dev}},\nu,\xi),
+\label{eq:release_map}
+\end{equation}
+where $\nu$ is permitted class-prior metadata and $\xi$ private-data-independent randomness. The map includes checkpoint/route selection, health estimation, offline teacher queries, and student training. Auxiliary/development data, labels, and $\nu$ are fixed under adjacency.
+
+\begin{proposition}[Privacy of the adaptive release]
+\label{thm:student_privacy}
+If $Z_t$ is $(\varepsilon,\delta)$-DP, the complete map~\eqref{eq:release_map}, including the selected route and reported health, is $(\varepsilon,\delta)$-DP for $D_{\mathrm{priv}}$.
+\end{proposition}
+Standard post-processing proves this (Supplement I-A)~\cite{dwork2014}. A predetermined Hard student is private-data-independent; a teacher-selected Hard route retains the teacher budget. Every inspected private update/candidate must be accounted. Sensitive counts or auxiliary/development records require separate mechanisms and composition, including overlap.
+
+
+\subsection{Teacher Training and Student Objectives}
+\label{sec:teacher_student_objectives}
+Teacher/student logits are $z_t=g_{\theta_t}(\phi_t(x))$, $z_s=g_{\theta_s}(\phi_s(x))$, allowing different representations. DP-SGD clips gradients $g_i$ at $C$ and perturbs their sum:
+\begin{equation}
+\widetilde g=\frac{1}{b_{\mathrm{exp}}}\left[\sum_{i\in\mathcal B}g_i\min\!\left\{1,\frac{C}{\|g_i\|_2}\right\}+\mathcal N(0,\sigma^2C^2I)\right].
+\end{equation}
+Opacus uses the fixed expected-batch-size normalizer $b_{\mathrm{exp}}$ under Poisson sampling; accounting uses the actual sampling rate, noise, and update count~\cite{abadi2016deepLearningDP,mironov2017rdp}.
+
+For $K$ classes with positive permitted counts $\nu_k$, BS uses~\cite{ren2020balanced}
+\begin{equation}
+\mathcal L_{\mathrm{BS}}(x,y)=-\log\frac{\nu_y\exp(z_{t,y})}{\sum_{k=1}^K\nu_k\exp(z_{t,k})}.
+\label{eq:bs}
+\end{equation}
+Logit adjustment with $\tau=1$ and priors proportional to $\nu$ is exactly BS~\cite{menon2021longtail}.
+
+For a frozen feature $h$ and linear head, set $p=\operatorname{softmax}(z_t)$, $\bar\nu=\sum_j\nu_jp_j$, and $q_k=\nu_kp_k/\bar\nu$. Then
+\begin{equation}
+\begin{aligned}
+\|\nabla_{w_y}\mathcal L_{\mathrm{CE}}\|_2&=(1-p_y)\|h\|_2,\\
+\|\nabla_{w_y}\mathcal L_{\mathrm{BS}}\|_2&=(1-q_y)\|h\|_2.
+\end{aligned}
+\end{equation}
+If $\nu_y<\bar\nu$ and $h\ne0$, BS increases the corrective target-row norm. This pre-clipping identity does not establish post-clipping utility; Supplement I-B derives it.
+
+All student branches use
+\begin{equation}
+\begin{aligned}
+\mathcal L_m(x,y)&=(1-\beta_m(x))\mathrm{CE}(z_s,y)\\
+&\quad+\beta_m(x)T^2\mathrm{KL}(p_t^T\Vert p_s^T),
+\end{aligned}
+\label{eq:unified_student}
+\end{equation}
+where $p_t^T=\operatorname{softmax}(z_t/T)$, $p_s^T=\operatorname{softmax}(z_s/T)$, and
+\begin{equation}
+\beta_m(x)=\begin{cases}
+0,&m=\mathrm{Hard},\\
+\alpha w(x),&m=\mathrm{HAKD},\\
+\alpha,&m=\mathrm{KD}.
+\end{cases}
+\label{eq:action_weights}
+\end{equation}
+Here $0\le\alpha\le1$, $T>0$; $\beta_m$ excludes, attenuates, or fully retains the KD contribution.
+
+\subsection{Teacher Health and Deterministic TCRD}
+\label{sec:tcrd}
+For development confusion counts $C_{ij}$ (true $i$, predicted $j$), write row/column totals $C_{k\cdot},C_{\cdot k}$ and $n=\sum_{ij}C_{ij}$. Define
+\begin{equation}
+\begin{aligned}
+\widehat B&=\frac1K\sum_k\frac{C_{kk}}{C_{k\cdot}},&
+\widehat F&=\frac1K\sum_k\frac{2C_{kk}}{C_{k\cdot}+C_{\cdot k}},\\
+\widehat M&=\max_k\frac{C_{\cdot k}}{n},&
+\widehat h_k&=\frac{C_{kk}}{C_{k\cdot}}.
+\end{aligned}
+\label{eq:metrics}
+\end{equation}
+These are balanced accuracy, Macro-F1, MajPred, and class recall; zero-denominator terms equal zero. Accuracy is $\sum_kC_{kk}/n$.
+
+The global teacher-health statistic is
+\begin{equation}
+\widehat H=\lambda_1\widehat B+\lambda_2\widehat F+\lambda_3(1-\widehat M),\quad
+\lambda_k\ge0,\quad\sum_{k=1}^3\lambda_k=1.
+\label{eq:health}
+\end{equation}
+The terms measure class coverage, precision--recall balance, and prediction dispersion, respectively. Dispersion alone does not establish correctness.
+
+Weights $\lambda=(1/3,1/3,1/3)$ and thresholds $(\tau_{\mathrm{low}},\tau_{\mathrm{high}})=(0.45,0.60)$ are fixed across tasks/seeds before test evaluation. Sensitivities are reported separately. Dispersion's scale depends on $K$, so these are common conventions, not cross-task calibration.
+
+The deterministic route is
+\begin{equation}
+m_0(\widehat H)=\begin{cases}
+\mathrm{Hard},&\widehat H<\tau_{\mathrm{low}},\\
+\mathrm{HAKD},&\tau_{\mathrm{low}}\le\widehat H<\tau_{\mathrm{high}},\\
+\mathrm{KD},&\widehat H\ge\tau_{\mathrm{high}}.
+\end{cases}
+\label{eq:threshold}
+\end{equation}
+For HAKD,
+\begin{equation}
+w(x)=\sum_kp_t^T(k\mid x)\widehat h_k,\qquad 0\le w(x)\le1,
+\label{eq:hakd_weight}
+\end{equation}
+Expected class recall is not calibrated correctness. HAKD reduces teacher influence and increases hard-label weight; intermediate weighting need not give intermediate utility.
+
+\paragraph*{What the score can identify}
+Health uses hard predictions, whereas KD uses soft targets. Positive logit rescaling preserves $\widehat H$ but changes $p_t^T$ and the KD loss. Student compatibility, auxiliary support, and optimization are also absent from health, so its region need not determine transfer's sign.
+
+\subsection{Uncertainty-Aware Routing}
+\label{sec:rctcrd_likelihood}
+Health uncertainty is estimated for the selected teacher using permitted calibration data. Earlier runners use 2,000 multinomial draws (audio) or 4,000 (emotion); CV17 additionally resamples speaker clusters on independently held-out calibration data. Supplement I-C derives the fixed-teacher delta-method variance, its regularity conditions, and confidence margins.
+
+Let $G\sim\mathcal N(\widehat H,\widehat\sigma_H^2)$ be a Gaussian working distribution. Extending the three regions in~\eqref{eq:threshold} over the real line gives, for $\widehat\sigma_H>0$,
+\begin{equation}
+\begin{aligned}
+q_{\mathrm{Hard}}&=\Phi(a),\qquad q_{\mathrm{KD}}=1-\Phi(b),\\
+q_{\mathrm{HAKD}}&=\Phi(b)-\Phi(a),\\
+a&=\frac{\tau_{\mathrm{low}}-\widehat H}{\widehat\sigma_H},\qquad
+b=\frac{\tau_{\mathrm{high}}-\widehat H}{\widehat\sigma_H}.
+\end{aligned}
+\label{eq:routing_masses}
+\end{equation}
+Here $\Phi$ is the standard-normal CDF. These masses approximate health-region probabilities, not a bounded-support posterior for $H$.
+
+\begin{definition}[Model-conditional region risk]
+\label{def:rctcrd-main}
+Let $R_G(m)=1-q_m$. RC-TCRD selects the unique mode with $q_m\ge1-\rho$, if one exists, using $\rho=0.10<1/2$. Otherwise it selects Hard with \texttt{certified=false}; fallback is not certification.
+\end{definition}
+Confidence depends on threshold margin relative to uncertainty. As uncertainty vanishes, the point estimate's region mass tends to one away from thresholds (Supplement Proposition 2). At zero SE, the implementation uses the deterministic route and its tie convention. Sampling from $\operatorname{Categorical}(q)$ is a separate uncertified action; \texttt{zero} refers to routing uncertainty, not KD temperature.
+
+Region disagreement is not negative transfer: $R_G(m)\ne\Pr(\Delta_{\mathrm{KD}}<0)$. The working model provides no distribution-free coverage or student-utility guarantee and does not automatically adjust for same-set selection or speaker dependence.
+
+\begin{algorithm}[t]
+\caption{Teacher-conditioned private speech release}
+\label{alg:tcrd_release}
+\KwIn{$D_{\mathrm{priv}}$; permitted $D_{\mathrm{aux}},D_{\mathrm{dev}},\nu$; training settings; fixed $\lambda,\tau_{\mathrm{low}},\tau_{\mathrm{high}}$; $\kappa\in\{\mathrm{zero},\mathrm{certified},\mathrm{sample}\}$; $\rho=0.10$.}
+\KwOut{Released student $\theta_s$ and route record.}
+Train the accounted teacher; select its checkpoint on permitted development data\;
+Estimate $\widehat H,\widehat h_k$ and uncertainty on the designated calibration data (independent in CV17)\;
+\eIf{$\kappa=\mathrm{zero}$}{Set $m=m_0(\widehat H)$\;}{
+Compute $q_m$ using the Gaussian working model\;
+\eIf{$\kappa=\mathrm{certified}$}{
+Select a mode with $q_m\ge1-\rho$ if available; mark certified\;
+Else use Hard with \texttt{certified=false}\;
+}{Sample $m\sim\operatorname{Categorical}(q)$; mark uncertified\;}}
+\If{$m\ne\mathrm{Hard}$}{Cache teacher logits on $D_{\mathrm{aux}}$ offline\;}
+Train on $D_{\mathrm{aux}}$ using~\eqref{eq:unified_student}; select on permitted $D_{\mathrm{dev}}$\;
+Release the student and record its selected mode\;
+\end{algorithm}
+
+\input{Experiments}
+\input{CV17_Experiments}
+
+\section{Conclusion}
+\label{sec:conclusion}
+TCRD makes exclusion, attenuation, or full KD an explicit private-release decision. CV17 shows balanced-accuracy gains over Hard and fixed BAcc routes; smaller studies expose missed beneficial transfer. BAcc predicts gain at least as well, mean-matched attenuation matches instance HAKD, and student validation remains competitive. Independent calibration and cluster resampling reveal certification's utility cost. Privacy, region confidence, and student utility are distinct properties.
+\bibliographystyle{IEEEtran}
+\bibliography{bibtex/bib/IEEEabrv}
+\end{document}

@@ -1,0 +1,118 @@
+{
+  "student_models": 9,
+  "epsilon": 6.082903877099999,
+  "noise_sigma": 13.683077842594122,
+  "delta": 1e-05,
+  "pairing_and_raw_prediction_metrics_match": true,
+  "hard_reproduces_strict_vctk": true,
+  "models": {
+    "hard": {
+      "bal_acc": {
+        "mean": 0.25555555555555554,
+        "sd": 0.0393817968854384
+      },
+      "macro_f1": {
+        "mean": 0.1430058479951216,
+        "sd": 0.053594447419204376
+      },
+      "maj_pred": {
+        "mean": 0.8166666666666665,
+        "sd": 0.1445779297741456
+      }
+    },
+    "pate": {
+      "bal_acc": {
+        "mean": 0.2555555555555556,
+        "sd": 0.11097213530798988
+      },
+      "macro_f1": {
+        "mean": 0.1673296423444265,
+        "sd": 0.07612383241688529
+      },
+      "maj_pred": {
+        "mean": 0.6083333333333333,
+        "sd": 0.0961046882889233
+      }
+    },
+    "pate_plus_labels": {
+      "bal_acc": {
+        "mean": 0.2888888888888889,
+        "sd": 0.05548606765399493
+      },
+      "macro_f1": {
+        "mean": 0.17177895981087468,
+        "sd": 0.06556115297647928
+      },
+      "maj_pred": {
+        "mean": 0.725,
+        "sd": 0.2136000936329383
+      }
+    }
+  },
+  "rows": [
+    {
+      "seed": 0,
+      "mode": "hard",
+      "bal_acc": 0.3,
+      "macro_f1": 0.2048606524897636,
+      "maj_pred": 0.6916666666666667
+    },
+    {
+      "seed": 0,
+      "mode": "pate",
+      "bal_acc": 0.2833333333333334,
+      "macro_f1": 0.18474215842636893,
+      "maj_pred": 0.7
+    },
+    {
+      "seed": 0,
+      "mode": "pate_plus_labels",
+      "bal_acc": 0.24166666666666667,
+      "macro_f1": 0.10283687943262411,
+      "maj_pred": 0.925
+    },
+    {
+      "seed": 1,
+      "mode": "hard",
+      "bal_acc": 0.24166666666666667,
+      "macro_f1": 0.11038961038961038,
+      "maj_pred": 0.975
+    },
+    {
+      "seed": 1,
+      "mode": "pate",
+      "bal_acc": 0.13333333333333333,
+      "macro_f1": 0.0840080971659919,
+      "maj_pred": 0.6166666666666667
+    },
+    {
+      "seed": 1,
+      "mode": "pate_plus_labels",
+      "bal_acc": 0.35,
+      "macro_f1": 0.23333333333333334,
+      "maj_pred": 0.5
+    },
+    {
+      "seed": 2,
+      "mode": "hard",
+      "bal_acc": 0.225,
+      "macro_f1": 0.11376728110599078,
+      "maj_pred": 0.7833333333333333
+    },
+    {
+      "seed": 2,
+      "mode": "pate",
+      "bal_acc": 0.35,
+      "macro_f1": 0.23323867144091864,
+      "maj_pred": 0.5083333333333333
+    },
+    {
+      "seed": 2,
+      "mode": "pate_plus_labels",
+      "bal_acc": 0.275,
+      "macro_f1": 0.17916666666666667,
+      "maj_pred": 0.75
+    }
+  ],
+  "budget_interpretation": "matched reported epsilon upper bounds; PATE Gaussian RDP and DP-SGD PRV differ"
+}

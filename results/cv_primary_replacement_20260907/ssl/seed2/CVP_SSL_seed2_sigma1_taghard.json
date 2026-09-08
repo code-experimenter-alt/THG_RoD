@@ -1,0 +1,316 @@
+{
+  "exp_id": "CVP_SSL",
+  "seed": 2,
+  "sigma": 1.0,
+  "run_tag": "hard",
+  "teacher_cache_id": "seed2_sigma1_ssl_linear_head_dp1_C8_balanced_softmax_prioraux_ep8_lr0.001_bs128",
+  "cfg": {
+    "data_root": "/mnt/hdd4t/tmmrr_data/common_voice_corpus1/primary_bundle_20260907",
+    "precomputed_bundle": "/mnt/hdd4t/tmmrr_data/common_voice_corpus1/primary_bundle_20260907",
+    "teacher_counts_source": "aux",
+    "save_eval_predictions": true,
+    "cache_dir": "/mnt/hdd4t/tmmrr_data/common_voice_corpus1/primary_bundle_20260907",
+    "train_csv": "cv-valid-train.csv",
+    "dev_csv": "cv-valid-dev.csv",
+    "test_csv": "cv-valid-test.csv",
+    "train_folder": "cv-valid-train",
+    "dev_folder": "cv-valid-dev",
+    "test_folder": "cv-valid-test",
+    "label_col": "accent",
+    "group_col": "client_id",
+    "split_mode": "official",
+    "ratios": [
+      0.6,
+      0.2,
+      0.1,
+      0.1
+    ],
+    "feature_backend": "ssl",
+    "target_sr": 16000,
+    "teacher_backend": "ssl",
+    "student_backend": "ssl",
+    "analysis_infer_sweep": false,
+    "infer_counts_source": "aux",
+    "record_grad_stats": false,
+    "n_mels": 40,
+    "max_time": 100,
+    "use_dsaf": true,
+    "eta0": 1e-05,
+    "ssl_model_name": "facebook/wav2vec2-base",
+    "ssl_pooling": "mean",
+    "ssl_max_seconds": 12.0,
+    "model_teacher": "linear_head",
+    "model_student": "linear_head",
+    "batch_size": 128,
+    "num_workers": 0,
+    "pin_memory": false,
+    "epochs_teacher": 8,
+    "epochs_student": 15,
+    "lr_teacher": 0.001,
+    "lr_student": 0.001,
+    "weight_decay": 0.0001,
+    "dp_teacher": true,
+    "max_grad_norm": 8.0,
+    "delta": 1e-05,
+    "loss_name": "balanced_softmax",
+    "logit_adjust_tau": 1.0,
+    "train_teacher": true,
+    "student_mode": "hard",
+    "kd_alpha": 0.7,
+    "kd_temperature": 2.0,
+    "hakd_weight_mode": "instance",
+    "health_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "health_power": 1.0,
+    "health_floor": 0.0,
+    "tcrd_tau_low": 0.45,
+    "tcrd_tau_high": 0.6,
+    "rc_rho": 0.1,
+    "rc_fallback": "hard",
+    "out_dir": "/home/fu/tmmrr_results/cv_primary_replacement_20260907/ssl/seed2",
+    "exp_id": "CVP_SSL",
+    "seed": 2,
+    "sigma": 1.0,
+    "run_tag": "hard",
+    "dev_limit": null,
+    "paired_hard_ckpt": null
+  },
+  "class_names": [
+    "england",
+    "indian",
+    "us"
+  ],
+  "teacher_info": {
+    "dp": true,
+    "sigma": 1.0,
+    "epsilon": 3.0544632930078213,
+    "delta": 1e-05,
+    "best_epoch": 8,
+    "best_dev_macro_f1": 0.32241510481525565,
+    "grad_stats": null,
+    "accountant": {
+      "sample_rate": 0.027777777777777776,
+      "dataset_size": 4525,
+      "nominal_batch_size": 128,
+      "steps": 288,
+      "accountant": "prv",
+      "history": [
+        [
+          1.0,
+          0.027777777777777776,
+          288
+        ]
+      ],
+      "sampling": "poisson",
+      "adjacency": "add_remove_one_training_record"
+    },
+    "class_counts_source": "aux",
+    "class_counts": [
+      996.0,
+      173.0,
+      1020.0
+    ],
+    "teacher_health_dev": {
+      "global_health": 0.25935047832217323,
+      "class_health": [
+        0.0,
+        0.16818182170391083,
+        0.9216300845146179
+      ],
+      "standard_error": 0.008225651406915595,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "routing_masses": null,
+      "sampled_mode": null,
+      "routing_certified": false,
+      "routing_fallback": false,
+      "routing_cert_threshold": null,
+      "routing_rho": 0.1
+    }
+  },
+  "teacher_dev": {
+    "acc": 0.589066918001885,
+    "bal_acc": 0.3632706374085684,
+    "macro_f1": 0.32241510481525565,
+    "maj_pred": 0.9076343072573044,
+    "per_class_recall": [
+      0.0,
+      0.16818181818181818,
+      0.9216300940438872
+    ],
+    "pred_counts": [
+      0,
+      98,
+      963
+    ],
+    "confusion": [
+      [
+        0,
+        11,
+        192
+      ],
+      [
+        0,
+        37,
+        183
+      ],
+      [
+        0,
+        50,
+        588
+      ]
+    ],
+    "entropy_mean": 0.867428719997406,
+    "pmax_mean": 0.6396710276603699
+  },
+  "teacher_test": {
+    "acc": 0.579520697167756,
+    "bal_acc": 0.36754742547425473,
+    "macro_f1": 0.33675882305294486,
+    "maj_pred": 0.8474945533769063,
+    "per_class_recall": [
+      0.0,
+      0.22764227642276422,
+      0.875
+    ],
+    "pred_counts": [
+      0,
+      70,
+      389
+    ],
+    "confusion": [
+      [
+        0,
+        8,
+        56
+      ],
+      [
+        0,
+        28,
+        95
+      ],
+      [
+        0,
+        34,
+        238
+      ]
+    ],
+    "entropy_mean": 0.8893032073974609,
+    "pmax_mean": 0.6178134083747864
+  },
+  "student_info": {
+    "best_epoch": 15,
+    "best_dev_macro_f1": 0.29396782792161485,
+    "requested_mode": "hard",
+    "effective_mode": "hard",
+    "teacher_global_health": 0.25935047832217323,
+    "class_health": [
+      0.0,
+      0.16818182170391083,
+      0.9216300845146179
+    ],
+    "hakd_weight_mode": "instance",
+    "needs_teacher_logits": false,
+    "paired_reused": false,
+    "student_init_seed": 1000005,
+    "student_init_hash": "4a3eac8e2d478620f908fbf9f335b8dc5a41a5f7a053c016423bf4024158729d",
+    "student_ckpt": "/home/fu/tmmrr_results/cv_primary_replacement_20260907/ssl/seed2/seed2_sigma1_ssl_linear_head_dp1_C8_balanced_softmax_prioraux_ep8_lr0.001_bs128_taghard_student_hard.pt"
+  },
+  "student_dev": {
+    "acc": 0.4599434495758718,
+    "bal_acc": 0.32972085385878486,
+    "macro_f1": 0.29396782792161485,
+    "maj_pred": 0.6427898209236569,
+    "per_class_recall": [
+      0.32019704433497537,
+      0.00909090909090909,
+      0.6598746081504702
+    ],
+    "pred_counts": [
+      371,
+      8,
+      682
+    ],
+    "confusion": [
+      [
+        65,
+        1,
+        137
+      ],
+      [
+        94,
+        2,
+        124
+      ],
+      [
+        212,
+        5,
+        421
+      ]
+    ],
+    "entropy_mean": 0.6896679401397705,
+    "pmax_mean": 0.7114264369010925
+  },
+  "student_test": {
+    "acc": 0.41830065359477125,
+    "bal_acc": 0.3686832456559859,
+    "macro_f1": 0.2992588761322726,
+    "maj_pred": 0.5708061002178649,
+    "per_class_recall": [
+      0.5,
+      0.032520325203252036,
+      0.5735294117647058
+    ],
+    "pred_counts": [
+      190,
+      7,
+      262
+    ],
+    "confusion": [
+      [
+        32,
+        0,
+        32
+      ],
+      [
+        45,
+        4,
+        74
+      ],
+      [
+        113,
+        3,
+        156
+      ]
+    ],
+    "entropy_mean": 0.719415545463562,
+    "pmax_mean": 0.6964379549026489
+  },
+  "routing": {
+    "requested_mode": "hard",
+    "health_se": 0.008225651406915595,
+    "masses": null,
+    "sampled_mode": null,
+    "certified": false,
+    "fallback": false,
+    "cert_threshold": null,
+    "rho": 0.1
+  },
+  "timestamp": "2026-09-07 23:42:11",
+  "timing": {
+    "feature_seconds": 0.004833483137190342,
+    "teacher_seconds": 0.9907971750944853,
+    "health_seconds": 0.03493107296526432,
+    "routing_seconds": 1.8118880689144135e-06,
+    "student_seconds": 0.22756916703656316,
+    "total_seconds": 1.2730043628253043,
+    "peak_cuda_allocated_mb": 24.2119140625
+  },
+  "predictions_file": "CVP_SSL_seed2_sigma1_taghard_predictions.npz"
+}

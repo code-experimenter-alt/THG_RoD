@@ -1,0 +1,68 @@
+{
+  "source": "https://huggingface.co/datasets/fsicoli/common_voice_17_0",
+  "revision": "8262c16bf297c87a9cd88c51997c4758ed7a8ba2",
+  "license": "CC0-1.0 according to the mirror dataset card",
+  "source_target_counts": {
+    "train": 445742,
+    "dev": 1458,
+    "test": 1675
+  },
+  "sampling": "random cap of 20 clips/client, then fixed random 50000 training clips; seeds 20260908/9",
+  "selection_calibration": "speaker-stratified split of official development; seed 20260910",
+  "class_names": [
+    "england",
+    "indian",
+    "us"
+  ],
+  "counts": {
+    "train": {
+      "records": 50000,
+      "speakers": 7514,
+      "classes": {
+        "us": 33046,
+        "england": 9724,
+        "indian": 7230
+      }
+    },
+    "dev": {
+      "records": 1458,
+      "speakers": 568,
+      "classes": {
+        "us": 893,
+        "indian": 357,
+        "england": 208
+      }
+    },
+    "test": {
+      "records": 1675,
+      "speakers": 1246,
+      "classes": {
+        "us": 963,
+        "indian": 456,
+        "england": 256
+      }
+    },
+    "selection": {
+      "records": 735,
+      "speakers": 284,
+      "classes": {
+        "us": 451,
+        "indian": 176,
+        "england": 108
+      }
+    },
+    "calibration": {
+      "records": 723,
+      "speakers": 284,
+      "classes": {
+        "us": 442,
+        "indian": 181,
+        "england": 100
+      }
+    }
+  },
+  "official_client_and_clip_disjoint": true,
+  "old_experiment_replication": false,
+  "tsv_parsing": "csv.QUOTE_NONE, matching source loader",
+  "sampling_revision": "quote_none_20260908"
+}

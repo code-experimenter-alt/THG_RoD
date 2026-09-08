@@ -1,0 +1,20 @@
+{
+  "protocol": "matched cached-feature release, excludes common teacher training and feature extraction",
+  "device": "NVIDIA GeForce RTX 5090",
+  "torch": "2.11.0+cu128",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "repeats": 3,
+  "student_epochs": 15,
+  "batch_size": 128,
+  "student_initialization_and_order": "same within seed for all candidates/repeats",
+  "warmup": "one unreported full run of every mode per seed",
+  "scheduling": "fixed randomized mode order per repeat",
+  "cuda_synchronize": "every stage boundary",
+  "health": "teacher development inference included; uncertainty resampling only for RC",
+  "selection": "S-BAcc actually trains all three students; first-max tie",
+  "samples_are_independent_datasets": false
+}

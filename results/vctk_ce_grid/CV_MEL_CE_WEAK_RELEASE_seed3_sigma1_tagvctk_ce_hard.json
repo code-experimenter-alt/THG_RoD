@@ -1,0 +1,356 @@
+{
+  "exp_id": "CV_MEL_CE_WEAK_RELEASE",
+  "seed": 3,
+  "sigma": 1.0,
+  "run_tag": "vctk_ce_hard",
+  "teacher_cache_id": "seed3_sigma1_splitofficial_groupspeaker_id_ratios0.6_0.2_0.1_0.1_tbackmel_tmodelcnn_mel_featmel_sr16000_m32_L80_dsaf1_eta1e-05_dp1_C8_lossce_tau1_ept4_lrt0.001_wd0.0001_bs64",
+  "cfg": {
+    "data_root": "/home/fu/tmmrr_vctk_subset",
+    "cache_dir": "/home/fu/tmmrr_cache/vctk_ce_grid",
+    "train_csv": "train.csv",
+    "dev_csv": "dev.csv",
+    "test_csv": "test.csv",
+    "train_folder": ".",
+    "dev_folder": ".",
+    "test_folder": ".",
+    "label_col": "accent",
+    "group_col": "speaker_id",
+    "split_mode": "official",
+    "ratios": [
+      0.6,
+      0.2,
+      0.1,
+      0.1
+    ],
+    "feature_backend": "mel",
+    "target_sr": 16000,
+    "teacher_backend": "mel",
+    "student_backend": "mel",
+    "analysis_infer_sweep": false,
+    "infer_counts_source": "aux",
+    "record_grad_stats": true,
+    "n_mels": 32,
+    "max_time": 80,
+    "use_dsaf": true,
+    "eta0": 1e-05,
+    "ssl_model_name": "facebook/wav2vec2-base",
+    "ssl_pooling": "mean",
+    "ssl_max_seconds": 12.0,
+    "model_teacher": "cnn_mel",
+    "model_student": "cnn_mel",
+    "batch_size": 64,
+    "num_workers": 0,
+    "pin_memory": false,
+    "epochs_teacher": 4,
+    "epochs_student": 5,
+    "lr_teacher": 0.001,
+    "lr_student": 0.001,
+    "weight_decay": 0.0001,
+    "dp_teacher": true,
+    "max_grad_norm": 8.0,
+    "delta": 1e-05,
+    "loss_name": "ce",
+    "logit_adjust_tau": 1.0,
+    "train_teacher": true,
+    "student_mode": "hard",
+    "kd_alpha": 0.7,
+    "kd_temperature": 2.0,
+    "hakd_weight_mode": "instance",
+    "health_power": 1.0,
+    "health_floor": 0.0,
+    "tcrd_tau_low": 0.45,
+    "tcrd_tau_high": 0.6,
+    "rc_rho": 0.1,
+    "rc_fallback": "hard",
+    "out_dir": "/home/fu/tmmrr_results/vctk_ce_grid",
+    "exp_id": "CV_MEL_CE_WEAK_RELEASE",
+    "seed": 3,
+    "sigma": 1.0,
+    "run_tag": "vctk_ce_hard",
+    "dev_limit": 120,
+    "paired_hard_ckpt": null
+  },
+  "class_names": [
+    "english",
+    "irish",
+    "scottish",
+    "us"
+  ],
+  "teacher_info": {
+    "dp": true,
+    "sigma": 1.0,
+    "epsilon": 6.082903877098955,
+    "delta": 1e-05,
+    "best_epoch": 3,
+    "best_dev_macro_f1": 0.1942866161616162,
+    "grad_stats": {
+      "clip_rate": [
+        0.9999999900658926,
+        1.0,
+        0.9999999900658926,
+        0.9999999900658926
+      ],
+      "gnorm_p90": [
+        41.954446156819664,
+        40.7767391204834,
+        42.010108947753906,
+        43.74878247578939
+      ],
+      "gnorm_p99": [
+        45.43361727396647,
+        44.06415875752767,
+        46.657715479532875,
+        47.99750200907389
+      ]
+    },
+    "accountant": {
+      "sample_rate": 0.16666666666666666,
+      "dataset_size": 360,
+      "nominal_batch_size": 64,
+      "steps": 24,
+      "accountant": "opacus"
+    },
+    "teacher_health_dev": {
+      "global_health": 0.20920664983164985,
+      "class_health": [
+        0.03333333507180214,
+        0.1666666716337204,
+        0.8999999761581421,
+        0.03333333507180214
+      ],
+      "standard_error": 0.024819725173490584,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "routing_masses": null,
+      "sampled_mode": null,
+      "routing_certified": false,
+      "routing_fallback": false,
+      "routing_cert_threshold": null,
+      "routing_rho": 0.1
+    }
+  },
+  "teacher_dev": {
+    "acc": 0.2833333333333333,
+    "bal_acc": 0.2833333333333334,
+    "macro_f1": 0.1942866161616162,
+    "maj_pred": 0.85,
+    "per_class_recall": [
+      0.03333333333333333,
+      0.16666666666666666,
+      0.9,
+      0.03333333333333333
+    ],
+    "pred_counts": [
+      6,
+      10,
+      102,
+      2
+    ],
+    "confusion": [
+      [
+        1,
+        5,
+        23,
+        1
+      ],
+      [
+        1,
+        5,
+        24,
+        0
+      ],
+      [
+        3,
+        0,
+        27,
+        0
+      ],
+      [
+        1,
+        0,
+        28,
+        1
+      ]
+    ],
+    "entropy_mean": 1.3568710088729858,
+    "pmax_mean": 0.3261336386203766
+  },
+  "teacher_test": {
+    "acc": 0.2833333333333333,
+    "bal_acc": 0.2833333333333334,
+    "macro_f1": 0.1987126168802256,
+    "maj_pred": 0.7166666666666667,
+    "per_class_recall": [
+      0.03333333333333333,
+      0.2,
+      0.8666666666666667,
+      0.03333333333333333
+    ],
+    "pred_counts": [
+      11,
+      21,
+      86,
+      2
+    ],
+    "confusion": [
+      [
+        1,
+        12,
+        17,
+        0
+      ],
+      [
+        3,
+        6,
+        20,
+        1
+      ],
+      [
+        3,
+        1,
+        26,
+        0
+      ],
+      [
+        4,
+        2,
+        23,
+        1
+      ]
+    ],
+    "entropy_mean": 1.3646738529205322,
+    "pmax_mean": 0.31455764174461365
+  },
+  "student_info": {
+    "best_epoch": 5,
+    "best_dev_macro_f1": 0.1332673827020916,
+    "requested_mode": "hard",
+    "effective_mode": "hard",
+    "teacher_global_health": 0.20920664983164985,
+    "class_health": [
+      0.03333333507180214,
+      0.1666666716337204,
+      0.8999999761581421,
+      0.03333333507180214
+    ],
+    "hakd_weight_mode": "instance",
+    "needs_teacher_logits": false,
+    "paired_reused": false,
+    "student_ckpt": "/home/fu/tmmrr_results/vctk_ce_grid/seed3_sigma1_splitofficial_groupspeaker_id_ratios0.6_0.2_0.1_0.1_tbackmel_tmodelcnn_mel_featmel_sr16000_m32_L80_dsaf1_eta1e-05_dp1_C8_lossce_tau1_ept4_lrt0.001_wd0.0001_bs64_tagvctk_ce_hard_student_hard.pt"
+  },
+  "student_dev": {
+    "acc": 0.225,
+    "bal_acc": 0.22499999999999998,
+    "macro_f1": 0.1332673827020916,
+    "maj_pred": 0.7666666666666667,
+    "per_class_recall": [
+      0.0,
+      0.7333333333333333,
+      0.16666666666666666,
+      0.0
+    ],
+    "pred_counts": [
+      0,
+      92,
+      28,
+      0
+    ],
+    "confusion": [
+      [
+        0,
+        16,
+        14,
+        0
+      ],
+      [
+        0,
+        22,
+        8,
+        0
+      ],
+      [
+        0,
+        25,
+        5,
+        0
+      ],
+      [
+        0,
+        29,
+        1,
+        0
+      ]
+    ],
+    "entropy_mean": 0.9777827858924866,
+    "pmax_mean": 0.5656012296676636
+  },
+  "student_test": {
+    "acc": 0.3416666666666667,
+    "bal_acc": 0.3416666666666667,
+    "macro_f1": 0.23721972905741562,
+    "maj_pred": 0.675,
+    "per_class_recall": [
+      0.03333333333333333,
+      0.8666666666666667,
+      0.4666666666666667,
+      0.0
+    ],
+    "pred_counts": [
+      2,
+      81,
+      37,
+      0
+    ],
+    "confusion": [
+      [
+        1,
+        20,
+        9,
+        0
+      ],
+      [
+        0,
+        26,
+        4,
+        0
+      ],
+      [
+        0,
+        16,
+        14,
+        0
+      ],
+      [
+        1,
+        19,
+        10,
+        0
+      ]
+    ],
+    "entropy_mean": 1.0170575380325317,
+    "pmax_mean": 0.5489177107810974
+  },
+  "routing": {
+    "requested_mode": "hard",
+    "health_se": 0.024819725173490584,
+    "masses": null,
+    "sampled_mode": null,
+    "certified": false,
+    "fallback": false,
+    "cert_threshold": null,
+    "rho": 0.1
+  },
+  "timestamp": "2026-09-05 17:43:42",
+  "timing": {
+    "feature_seconds": 7.66838880488649,
+    "teacher_seconds": 0.9520594361238182,
+    "health_seconds": 0.02881284663453698,
+    "routing_seconds": 2.5168992578983307e-06,
+    "student_seconds": 0.10389968613162637,
+    "total_seconds": 8.85112519422546,
+    "peak_cuda_allocated_mb": 1230.38671875
+  }
+}

@@ -1,0 +1,14 @@
+# Python 3.13. Install torch/torchaudio 2.11.0 from the CUDA 12.8 index first.
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.0
+opacus==1.6.0
+transformers==4.57.6
+soundfile==0.14.0
+soxr==1.1.0
+PyYAML==6.0.3
+tqdm==4.70.0
+pytest==9.1.1
+matplotlib==3.10.9
+requests>=2.32,<3

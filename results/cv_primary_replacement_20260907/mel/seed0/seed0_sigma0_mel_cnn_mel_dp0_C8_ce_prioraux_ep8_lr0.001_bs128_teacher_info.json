@@ -1,0 +1,16 @@
+{
+  "dp": false,
+  "sigma": 0.0,
+  "epsilon": 0.0,
+  "delta": 1e-05,
+  "best_epoch": 7,
+  "best_dev_macro_f1": 0.3389535400530199,
+  "grad_stats": null,
+  "accountant": null,
+  "class_counts_source": "aux",
+  "class_counts": [
+    842.0,
+    22.0,
+    1510.0
+  ]
+}

@@ -1,0 +1,1139 @@
+{
+  "exp_id": "CVP_MEL",
+  "seed": 3,
+  "sigma": 2.0,
+  "run_tag": "ctkd_global",
+  "teacher_cache_id": "seed3_sigma2_mel_cnn_mel_dp1_C8_ce_prioraux_ep8_lr0.001_bs128",
+  "cfg": {
+    "data_root": "/home/fy1/tmmrr_primary_20260907/bundle",
+    "precomputed_bundle": "/home/fy1/tmmrr_primary_20260907/bundle",
+    "teacher_counts_source": "aux",
+    "save_eval_predictions": true,
+    "cache_dir": "/home/fy1/tmmrr_primary_20260907/bundle",
+    "train_csv": "cv-valid-train.csv",
+    "dev_csv": "cv-valid-dev.csv",
+    "test_csv": "cv-valid-test.csv",
+    "train_folder": "cv-valid-train",
+    "dev_folder": "cv-valid-dev",
+    "test_folder": "cv-valid-test",
+    "label_col": "accent",
+    "group_col": "client_id",
+    "split_mode": "official",
+    "ratios": [
+      0.6,
+      0.2,
+      0.1,
+      0.1
+    ],
+    "feature_backend": "mel",
+    "target_sr": 16000,
+    "teacher_backend": "mel",
+    "student_backend": "mel",
+    "analysis_infer_sweep": false,
+    "infer_counts_source": "aux",
+    "record_grad_stats": false,
+    "n_mels": 40,
+    "max_time": 100,
+    "use_dsaf": true,
+    "eta0": 1e-05,
+    "ssl_model_name": "facebook/wav2vec2-base",
+    "ssl_pooling": "mean",
+    "ssl_max_seconds": 12.0,
+    "model_teacher": "cnn_mel",
+    "model_student": "cnn_mel",
+    "batch_size": 128,
+    "num_workers": 0,
+    "pin_memory": false,
+    "epochs_teacher": 8,
+    "epochs_student": 15,
+    "lr_teacher": 0.001,
+    "lr_student": 0.001,
+    "weight_decay": 0.0001,
+    "dp_teacher": true,
+    "max_grad_norm": 8.0,
+    "delta": 1e-05,
+    "loss_name": "ce",
+    "logit_adjust_tau": 1.0,
+    "train_teacher": false,
+    "student_mode": "ctkd_global",
+    "kd_alpha": 0.7,
+    "kd_temperature": 2.0,
+    "hakd_weight_mode": "instance",
+    "health_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "health_power": 1.0,
+    "health_floor": 0.0,
+    "tcrd_tau_low": 0.45,
+    "tcrd_tau_high": 0.6,
+    "rc_rho": 0.1,
+    "rc_fallback": "hard",
+    "out_dir": "/home/fy1/tmmrr_primary_20260907/results/mel/seed3",
+    "exp_id": "CVP_MEL",
+    "seed": 3,
+    "sigma": 2.0,
+    "run_tag": "ctkd_global",
+    "dev_limit": null,
+    "paired_hard_ckpt": null
+  },
+  "class_names": [
+    "england",
+    "indian",
+    "us"
+  ],
+  "teacher_info": {
+    "dp": true,
+    "sigma": 2.0,
+    "epsilon": 0.8917946202619036,
+    "delta": 1e-05,
+    "best_epoch": 7,
+    "best_dev_macro_f1": 0.27414370686058737,
+    "grad_stats": null,
+    "accountant": {
+      "sample_rate": 0.022727272727272728,
+      "dataset_size": 5576,
+      "nominal_batch_size": 128,
+      "steps": 352,
+      "accountant": "prv",
+      "history": [
+        [
+          2.0,
+          0.022727272727272728,
+          352
+        ]
+      ],
+      "sampling": "poisson",
+      "adjacency": "add_remove_one_training_record"
+    },
+    "class_counts_source": "aux",
+    "class_counts": [
+      420.0,
+      152.0,
+      566.0
+    ],
+    "loaded_ckpt": "/home/fy1/tmmrr_primary_20260907/results/mel/seed3/seed3_sigma2_mel_cnn_mel_dp1_C8_ce_prioraux_ep8_lr0.001_bs128_teacher.pt",
+    "teacher_health_dev": {
+      "global_health": 0.2163962370855206,
+      "class_health": [
+        0.04433497413992882,
+        0.0,
+        0.9733542203903198
+      ],
+      "standard_error": 0.005395954812089861,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "routing_masses": null,
+      "sampled_mode": null,
+      "routing_certified": false,
+      "routing_fallback": false,
+      "routing_cert_threshold": null,
+      "routing_rho": 0.1
+    }
+  },
+  "teacher_dev": {
+    "acc": 0.5937794533459001,
+    "bal_acc": 0.33922973578145993,
+    "macro_f1": 0.27414370686058737,
+    "maj_pred": 0.9641847313854854,
+    "per_class_recall": [
+      0.04433497536945813,
+      0.0,
+      0.9733542319749217
+    ],
+    "pred_counts": [
+      38,
+      0,
+      1023
+    ],
+    "confusion": [
+      [
+        9,
+        0,
+        194
+      ],
+      [
+        12,
+        0,
+        208
+      ],
+      [
+        17,
+        0,
+        621
+      ]
+    ],
+    "entropy_mean": 0.2267114371061325,
+    "pmax_mean": 0.9248026609420776
+  },
+  "teacher_test": {
+    "acc": 0.5664488017429193,
+    "bal_acc": 0.33455882352941174,
+    "macro_f1": 0.27172827172827174,
+    "maj_pred": 0.9411764705882353,
+    "per_class_recall": [
+      0.0625,
+      0.0,
+      0.9411764705882353
+    ],
+    "pred_counts": [
+      27,
+      0,
+      432
+    ],
+    "confusion": [
+      [
+        4,
+        0,
+        60
+      ],
+      [
+        7,
+        0,
+        116
+      ],
+      [
+        16,
+        0,
+        256
+      ]
+    ],
+    "entropy_mean": 0.25572216510772705,
+    "pmax_mean": 0.9100139737129211
+  },
+  "student_info": {
+    "best_epoch": 1,
+    "best_dev_macro_f1": 0.26423883510704166,
+    "requested_mode": "ctkd_global",
+    "effective_mode": "ctkd_global",
+    "teacher_global_health": 0.2163962370855206,
+    "class_health": [
+      0.04433497413992882,
+      0.0,
+      0.9733542203903198
+    ],
+    "hakd_weight_mode": "instance",
+    "ctkd": {
+      "variant": "global",
+      "source_commit": "56112892d5aca069bd56bb057feee9f7ff9e4141",
+      "initial_raw": 1.0,
+      "temperature_offset": 1.0,
+      "temperature_range": 20.0,
+      "cosine_ramp_epochs": 10,
+      "optimizer": "AdamW, joint with student; matched speech protocol",
+      "raw_final": 0.8849523067474365,
+      "trace": [
+        {
+          "epoch": 1,
+          "temperature": 15.621170997619629,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.0003042376774828881
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.61723804473877,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": -0.0065025947988033295
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.620038032531738,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": -0.0006724774721078575
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.622448921203613,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.0008861355017870665
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.624098777770996,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.0007190497126430273
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.625251770019531,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.0004728633794002235
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.626096725463867,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.00030154778505675495
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.626742362976074,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.00028016199939884245
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.62723159790039,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.00022240869293455034
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.627599716186523,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0012066462077200413
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.627582550048828,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0009079161682166159
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.627315521240234,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0010047184769064188
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.626802444458008,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0011225162306800485
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.626041412353516,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0012155913282185793
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.625036239624023,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.001296561793424189
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.623796463012695,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0015758151421323419
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.622288703918457,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0016381385503336787
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.620529174804688,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": 0.0016302516451105475
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.618555068969727,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.00386338634416461
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.616067886352539,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.003943303134292364
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.613176345825195,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.004046120680868626
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.609967231750488,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.0036624763160943985
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.606529235839844,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.0034002948086708784
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.602927207946777,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.002707432024180889
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.599250793457031,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.002298851264640689
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.595558166503906,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.0015595126897096634
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.591943740844727,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": 0.0011772282887250185
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.588456153869629,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.001309798564761877
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.585060119628906,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.0006578666507266462
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.58184814453125,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.00030741715454496443
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.578866004943848,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.00014278601156547666
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.576120376586914,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.0007348639774136245
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.573484420776367,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.0004534610779955983
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.570999145507812,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.0009315401548519731
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.568561553955078,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.00045217559090815485
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.566253662109375,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": 0.0008877072250470519
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.563982009887695,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0008848018478602171
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.561742782592773,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0008112193318083882
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.55954647064209,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0009684450924396515
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.557356834411621,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.000982207478955388
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.555169105529785,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0016522891819477081
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.55285930633545,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0012902356684207916
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.55050277709961,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0022977585904300213
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.547921180725098,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.002136621158570051
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.545172691345215,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": 0.0023040403611958027
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.542242050170898,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.003306387923657894
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.53900146484375,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.002854633843526244
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.535555839538574,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.0033625036012381315
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.531862258911133,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.003088257508352399
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.527993202209473,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.0027601427864283323
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.524015426635742,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.002633793279528618
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.519960403442383,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.0028525704983621836
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.51580810546875,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.003264673752710223
+        },
+        {
+          "epoch": 6,
+          "temperature": 15.511514663696289,
+          "gradient_reversal_magnitude": 0.6545084971874737,
+          "raw_gradient": 0.0019022095948457718
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.507292747497559,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.003395929466933012
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.502922058105469,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.0020709610544145107
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.498607635498047,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.002150122309103608
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.494329452514648,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.0024089531507343054
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.490046501159668,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.0016006353544071317
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.485882759094238,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.0023583502043038607
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.481708526611328,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.0023916689679026604
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.477519989013672,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.002127323066815734
+        },
+        {
+          "epoch": 7,
+          "temperature": 15.473360061645508,
+          "gradient_reversal_magnitude": 0.7938926261462365,
+          "raw_gradient": 0.0014229330699890852
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.46933364868164,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.0016887035453692079
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.465387344360352,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.001576145295985043
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.461528778076172,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.0024814738426357508
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.457605361938477,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.0018168282695114613
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.453727722167969,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.0018716620979830623
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.449884414672852,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.002840315690264106
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.445916175842285,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.0030864246655255556
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.44180679321289,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.0023776418529450893
+        },
+        {
+          "epoch": 8,
+          "temperature": 15.437674522399902,
+          "gradient_reversal_magnitude": 0.9045084971874737,
+          "raw_gradient": 0.002866186201572418
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.433451652526855,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.003596109338104725
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.429044723510742,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.002395270625129342
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.424649238586426,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.002315881662070751
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.420276641845703,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.0025513882283121347
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.415888786315918,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.0029802918434143066
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.411426544189453,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.0037982675712555647
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.406784057617188,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.002139363205060363
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.402219772338867,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.003029874060302973
+        },
+        {
+          "epoch": 9,
+          "temperature": 15.397600173950195,
+          "gradient_reversal_magnitude": 0.9755282581475768,
+          "raw_gradient": 0.0025508697144687176
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.39299488067627,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.003346689511090517
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.388293266296387,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0035095957573503256
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.383485794067383,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0036344260443001986
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.37856674194336,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.00315582612529397
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.373619079589844,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0032444330863654613
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.368634223937988,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0017734149005264044
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.363831520080566,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0013344375183805823
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.359256744384766,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0027997561264783144
+        },
+        {
+          "epoch": 10,
+          "temperature": 15.354669570922852,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002205034252256155
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.350157737731934,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.001363720279186964
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.345844268798828,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0028661303222179413
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.341477394104004,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0026578165125101805
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.337092399597168,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0030144471675157547
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.332643508911133,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0021694505121558905
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.32826042175293,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0020574212539941072
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.323953628540039,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002884527435526252
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.319592475891113,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.00313767371699214
+        },
+        {
+          "epoch": 11,
+          "temperature": 15.315143585205078,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0028297482058405876
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.31066608428955,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0029166536405682564
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.306146621704102,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.003963074181228876
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.301444053649902,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0020872647874057293
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.29685115814209,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.001972441328689456
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.292373657226562,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0023008612915873528
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.28795051574707,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002306477166712284
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.283575057983398,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0016936539905145764
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.279335975646973,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0023444865364581347
+        },
+        {
+          "epoch": 12,
+          "temperature": 15.27511978149414,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0019535664469003677
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.27098274230957,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0020090066827833652
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.266908645629883,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002468715887516737
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.262818336486816,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002237972803413868
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.258750915527344,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.003459659405052662
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.254517555236816,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0029606695752590895
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.250210762023926,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0029626041650772095
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.24583911895752,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.004300043918192387
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.241218566894531,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0014422318199649453
+        },
+        {
+          "epoch": 13,
+          "temperature": 15.236801147460938,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.003590567735955119
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.232242584228516,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002270825207233429
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.227752685546875,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0024565740022808313
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.223297119140625,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.001428309828042984
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.219032287597656,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.003053391585126519
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.214688301086426,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0025982228107750416
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.210339546203613,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0033464827574789524
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.205877304077148,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.003018351271748543
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.20136547088623,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0019079387420788407
+        },
+        {
+          "epoch": 14,
+          "temperature": 15.196972846984863,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.001916681183502078
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.19268798828125,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.002818106906488538
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.188364028930664,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0012970613315701485
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.184237480163574,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0016035904409363866
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.180242538452148,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0029517437797039747
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.176155090332031,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0013990856241434813
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.172225952148438,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0027373468037694693
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.168230056762695,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.0014615211402997375
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.164373397827148,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.001513174269348383
+        },
+        {
+          "epoch": 15,
+          "temperature": 15.160634994506836,
+          "gradient_reversal_magnitude": 1.0,
+          "raw_gradient": 0.001851618755608797
+        }
+      ]
+    },
+    "needs_teacher_logits": true,
+    "paired_reused": false,
+    "student_init_seed": 1000006,
+    "student_init_hash": "91d46dd47c56ad240ead68d68d3e028940fddce1447adef011dfdd9d37710f44",
+    "student_ckpt": "/home/fy1/tmmrr_primary_20260907/results/mel/seed3/seed3_sigma2_mel_cnn_mel_dp1_C8_ce_prioraux_ep8_lr0.001_bs128_tagctkd_global_student_ctkd_global.pt"
+  },
+  "student_dev": {
+    "acc": 0.43732327992459946,
+    "bal_acc": 0.2984027466786088,
+    "macro_f1": 0.26423883510704166,
+    "maj_pred": 0.6861451460885957,
+    "per_class_recall": [
+      0.24630541871921183,
+      0.0,
+      0.6489028213166145
+    ],
+    "pred_counts": [
+      333,
+      0,
+      728
+    ],
+    "confusion": [
+      [
+        50,
+        0,
+        153
+      ],
+      [
+        59,
+        0,
+        161
+      ],
+      [
+        224,
+        0,
+        414
+      ]
+    ],
+    "entropy_mean": 1.0982637405395508,
+    "pmax_mean": 0.3408167362213135
+  },
+  "student_test": {
+    "acc": 0.4357298474945534,
+    "bal_acc": 0.3128063725490196,
+    "macro_f1": 0.2621469112807073,
+    "maj_pred": 0.690631808278867,
+    "per_class_recall": [
+      0.265625,
+      0.0,
+      0.6727941176470589
+    ],
+    "pred_counts": [
+      142,
+      0,
+      317
+    ],
+    "confusion": [
+      [
+        17,
+        0,
+        47
+      ],
+      [
+        36,
+        0,
+        87
+      ],
+      [
+        89,
+        0,
+        183
+      ]
+    ],
+    "entropy_mean": 1.0982799530029297,
+    "pmax_mean": 0.34061506390571594
+  },
+  "routing": {
+    "requested_mode": "ctkd_global",
+    "health_se": 0.005395954812089861,
+    "masses": null,
+    "sampled_mode": null,
+    "certified": false,
+    "fallback": false,
+    "cert_threshold": null,
+    "rho": 0.1
+  },
+  "timestamp": "2026-09-07 23:43:40",
+  "timing": {
+    "feature_seconds": 0.015503895003348589,
+    "teacher_seconds": 0.008962774183601141,
+    "health_seconds": 0.018824799917638302,
+    "routing_seconds": 1.1720694601535797e-06,
+    "student_seconds": 0.6130025908350945,
+    "total_seconds": 0.6929990001954138,
+    "peak_cuda_allocated_mb": 2363.07421875
+  },
+  "predictions_file": "CVP_MEL_seed3_sigma2_tagctkd_global_predictions.npz"
+}

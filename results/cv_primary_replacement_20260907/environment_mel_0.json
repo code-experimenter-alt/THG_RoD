@@ -1,0 +1,15 @@
+{
+  "host": "fy1",
+  "python": "3.13.7 (main, Mar  3 2026, 12:19:54) [GCC 15.2.0]",
+  "torch": "2.11.0+cu128",
+  "opacus": "1.6.0",
+  "device": "NVIDIA GeForce RTX 5090",
+  "family": "mel",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}

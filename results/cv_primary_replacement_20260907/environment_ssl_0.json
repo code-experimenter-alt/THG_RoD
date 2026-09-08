@@ -1,0 +1,15 @@
+{
+  "host": "fu-System-Product-Name",
+  "python": "3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:19:41) [GCC 14.3.0]",
+  "torch": "2.11.0+cu128",
+  "opacus": "1.6.0",
+  "device": "NVIDIA GeForce RTX 5090",
+  "family": "ssl",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}

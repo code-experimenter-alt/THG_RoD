@@ -1,0 +1,16 @@
+{
+  "model": "facebook/wav2vec2-base",
+  "revision": "0b5b8e868dd84f03fd87d01f9c4ff0f080fecfe8",
+  "sample_rate": 16000,
+  "max_seconds": 12,
+  "normalization": "per real waveform, variance + 1e-7",
+  "padding": "fixed 192000 samples, zero pad after normalization",
+  "pooling": "final hidden layer mean over valid convolution frames",
+  "model_attention_mask": false,
+  "dtype": "float32",
+  "tf32": false,
+  "resample": "soxr HQ",
+  "batch_size": 16,
+  "torch": "2.11.0+cu128",
+  "device": "NVIDIA GeForce RTX 5090"
+}

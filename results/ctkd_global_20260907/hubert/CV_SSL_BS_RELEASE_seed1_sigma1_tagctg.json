@@ -1,0 +1,436 @@
+{
+  "exp_id": "CV_SSL_BS_RELEASE",
+  "seed": 1,
+  "sigma": 1.0,
+  "run_tag": "ctg",
+  "teacher_cache_id": "seed1_sigma1_splitofficial_groupspeaker_id_ratios0.6_0.2_0.1_0.1_tbackssl_tmodellinear_head_featssl__home_fu_tmmrr_hf_hubert-base_mean_sr16000_mx12.0_dp1_C8_lossbalanced_softmax_tau1_ept4_lrt0.001_wd0.0001_bs64",
+  "cfg": {
+    "data_root": "/home/fu/tmmrr_vctk_subset",
+    "cache_dir": "/home/fu/tmmrr_cache/hubert_base",
+    "train_csv": "train.csv",
+    "dev_csv": "dev.csv",
+    "test_csv": "test.csv",
+    "train_folder": ".",
+    "dev_folder": ".",
+    "test_folder": ".",
+    "label_col": "accent",
+    "group_col": "speaker_id",
+    "split_mode": "official",
+    "ratios": [
+      0.6,
+      0.2,
+      0.1,
+      0.1
+    ],
+    "feature_backend": "ssl",
+    "target_sr": 16000,
+    "teacher_backend": "ssl",
+    "student_backend": "mel",
+    "analysis_infer_sweep": false,
+    "infer_counts_source": "aux",
+    "record_grad_stats": true,
+    "n_mels": 40,
+    "max_time": 100,
+    "use_dsaf": false,
+    "eta0": 1e-05,
+    "ssl_model_name": "/home/fu/tmmrr_hf/hubert-base",
+    "ssl_pooling": "mean",
+    "ssl_max_seconds": 12.0,
+    "model_teacher": "linear_head",
+    "model_student": "cnn_mel",
+    "batch_size": 64,
+    "num_workers": 0,
+    "pin_memory": false,
+    "epochs_teacher": 4,
+    "epochs_student": 5,
+    "lr_teacher": 0.001,
+    "lr_student": 0.001,
+    "weight_decay": 0.0001,
+    "dp_teacher": true,
+    "max_grad_norm": 8.0,
+    "delta": 1e-05,
+    "loss_name": "balanced_softmax",
+    "logit_adjust_tau": 1.0,
+    "train_teacher": false,
+    "student_mode": "ctkd_global",
+    "kd_alpha": 0.7,
+    "kd_temperature": 2.0,
+    "hakd_weight_mode": "instance",
+    "health_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "health_power": 1.0,
+    "health_floor": 0.0,
+    "tcrd_tau_low": 0.45,
+    "tcrd_tau_high": 0.6,
+    "rc_rho": 0.1,
+    "rc_fallback": "hard",
+    "out_dir": "/home/fu/tmmrr_results/ctkd_global_20260907/hubert",
+    "exp_id": "CV_SSL_BS_RELEASE",
+    "seed": 1,
+    "sigma": 1.0,
+    "run_tag": "ctg",
+    "dev_limit": 120,
+    "paired_hard_ckpt": null
+  },
+  "class_names": [
+    "english",
+    "irish",
+    "scottish",
+    "us"
+  ],
+  "teacher_info": {
+    "dp": true,
+    "sigma": 1.0,
+    "epsilon": 6.082903877098955,
+    "delta": 1e-05,
+    "best_epoch": 3,
+    "best_dev_macro_f1": 0.2637252429855126,
+    "grad_stats": {
+      "clip_rate": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gnorm_p90": [
+        5.06381893157959,
+        5.017847617467244,
+        5.074202219645183,
+        5.023511012395223
+      ],
+      "gnorm_p99": [
+        5.967356046040853,
+        5.863555272420247,
+        5.926140308380127,
+        5.79066014289856
+      ]
+    },
+    "accountant": {
+      "sample_rate": 0.16666666666666666,
+      "dataset_size": 360,
+      "nominal_batch_size": 64,
+      "steps": 24,
+      "accountant": "opacus"
+    },
+    "loaded_ckpt": "/home/fu/tmmrr_results/ctkd_global_20260907/hubert/seed1_sigma1_splitofficial_groupspeaker_id_ratios0.6_0.2_0.1_0.1_tbackssl_tmodellinear_head_featssl__home_fu_tmmrr_hf_hubert-base_mean_sr16000_mx12.0_dp1_C8_lossbalanced_softmax_tau1_ept4_lrt0.001_wd0.0001_bs64_teacher.pt",
+    "teacher_health_dev": {
+      "global_health": 0.30457508099517083,
+      "class_health": [
+        0.8333333134651184,
+        0.20000000298023224,
+        0.30000001192092896,
+        0.0
+      ],
+      "standard_error": 0.03056540980239643,
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "routing_masses": null,
+      "sampled_mode": null,
+      "routing_certified": false,
+      "routing_fallback": false,
+      "routing_cert_threshold": null,
+      "routing_rho": 0.1
+    }
+  },
+  "teacher_dev": {
+    "acc": 0.3333333333333333,
+    "bal_acc": 0.33333333333333337,
+    "macro_f1": 0.2637252429855126,
+    "maj_pred": 0.6833333333333333,
+    "per_class_recall": [
+      0.8333333333333334,
+      0.2,
+      0.3,
+      0.0
+    ],
+    "pred_counts": [
+      82,
+      11,
+      27,
+      0
+    ],
+    "confusion": [
+      [
+        25,
+        4,
+        1,
+        0
+      ],
+      [
+        18,
+        6,
+        6,
+        0
+      ],
+      [
+        20,
+        1,
+        9,
+        0
+      ],
+      [
+        19,
+        0,
+        11,
+        0
+      ]
+    ],
+    "entropy_mean": 1.3846169710159302,
+    "pmax_mean": 0.2682383954524994
+  },
+  "teacher_test": {
+    "acc": 0.25833333333333336,
+    "bal_acc": 0.2583333333333333,
+    "macro_f1": 0.23540055841924398,
+    "maj_pred": 0.5583333333333333,
+    "per_class_recall": [
+      0.3333333333333333,
+      0.2,
+      0.5,
+      0.0
+    ],
+    "pred_counts": [
+      67,
+      15,
+      34,
+      4
+    ],
+    "confusion": [
+      [
+        10,
+        7,
+        12,
+        1
+      ],
+      [
+        19,
+        6,
+        5,
+        0
+      ],
+      [
+        10,
+        2,
+        15,
+        3
+      ],
+      [
+        28,
+        0,
+        2,
+        0
+      ]
+    ],
+    "entropy_mean": 1.385225534439087,
+    "pmax_mean": 0.2639719843864441
+  },
+  "student_info": {
+    "best_epoch": 1,
+    "best_dev_macro_f1": 0.1,
+    "requested_mode": "ctkd_global",
+    "effective_mode": "ctkd_global",
+    "teacher_global_health": 0.30457508099517083,
+    "class_health": [
+      0.8333333134651184,
+      0.20000000298023224,
+      0.30000001192092896,
+      0.0
+    ],
+    "hakd_weight_mode": "instance",
+    "ctkd": {
+      "variant": "global",
+      "source_commit": "56112892d5aca069bd56bb057feee9f7ff9e4141",
+      "initial_raw": 1.0,
+      "temperature_offset": 1.0,
+      "temperature_range": 20.0,
+      "cosine_ramp_epochs": 10,
+      "optimizer": "AdamW, joint with student; matched speech protocol",
+      "raw_final": 0.9966006278991699,
+      "trace": [
+        {
+          "epoch": 1,
+          "temperature": 15.621170997619629,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 4.546338345789991e-07
+        },
+        {
+          "epoch": 1,
+          "temperature": 15.61732292175293,
+          "gradient_reversal_magnitude": 0.024471741852423234,
+          "raw_gradient": 0.006997569929808378
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.61439323425293,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": -0.00011038791853934526
+        },
+        {
+          "epoch": 2,
+          "temperature": 15.61216926574707,
+          "gradient_reversal_magnitude": 0.09549150281252627,
+          "raw_gradient": -0.0012276755878701806
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.61076831817627,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": -0.0005444822018034756
+        },
+        {
+          "epoch": 3,
+          "temperature": 15.60975456237793,
+          "gradient_reversal_magnitude": 0.20610737385376343,
+          "raw_gradient": -4.787359284819104e-05
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.608892440795898,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": -0.0010330447694286704
+        },
+        {
+          "epoch": 4,
+          "temperature": 15.608434677124023,
+          "gradient_reversal_magnitude": 0.3454915028125263,
+          "raw_gradient": -0.0002004278649110347
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.608086585998535,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": -0.00036597612779587507
+        },
+        {
+          "epoch": 5,
+          "temperature": 15.607873916625977,
+          "gradient_reversal_magnitude": 0.49999999999999994,
+          "raw_gradient": -0.00040776128298603
+        }
+      ]
+    },
+    "needs_teacher_logits": true,
+    "paired_reused": false,
+    "student_init_seed": 1000004,
+    "student_init_hash": "0b3c18a7dd8d3499091220d8c91190560c0ffcd520e92d5748ff0e3d6dad7652",
+    "student_ckpt": "/home/fu/tmmrr_results/ctkd_global_20260907/hubert/seed1_sigma1_splitofficial_groupspeaker_id_ratios0.6_0.2_0.1_0.1_tbackssl_tmodellinear_head_featssl__home_fu_tmmrr_hf_hubert-base_mean_sr16000_mx12.0_dp1_C8_lossbalanced_softmax_tau1_ept4_lrt0.001_wd0.0001_bs64_tagctg_student_ctkd_global.pt"
+  },
+  "student_dev": {
+    "acc": 0.25,
+    "bal_acc": 0.25,
+    "macro_f1": 0.1,
+    "maj_pred": 1.0,
+    "per_class_recall": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "pred_counts": [
+      0,
+      0,
+      0,
+      120
+    ],
+    "confusion": [
+      [
+        0,
+        0,
+        0,
+        30
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ]
+    ],
+    "entropy_mean": 0.41434600949287415,
+    "pmax_mean": 0.8880799412727356
+  },
+  "student_test": {
+    "acc": 0.25,
+    "bal_acc": 0.25,
+    "macro_f1": 0.1,
+    "maj_pred": 1.0,
+    "per_class_recall": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "pred_counts": [
+      0,
+      0,
+      0,
+      120
+    ],
+    "confusion": [
+      [
+        0,
+        0,
+        0,
+        30
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ],
+      [
+        0,
+        0,
+        0,
+        30
+      ]
+    ],
+    "entropy_mean": 0.4023953080177307,
+    "pmax_mean": 0.8920929431915283
+  },
+  "routing": {
+    "requested_mode": "ctkd_global",
+    "health_se": 0.03056540980239643,
+    "masses": null,
+    "sampled_mode": null,
+    "certified": false,
+    "fallback": false,
+    "cert_threshold": null,
+    "rho": 0.1
+  },
+  "timestamp": "2026-09-07 21:50:43",
+  "timing": {
+    "feature_seconds": 0.04573200875893235,
+    "teacher_seconds": 0.0013526747934520245,
+    "health_seconds": 0.02148539386689663,
+    "routing_seconds": 1.8952414393424988e-06,
+    "student_seconds": 0.06517163896933198,
+    "total_seconds": 0.13990058889612556,
+    "peak_cuda_allocated_mb": 221.60888671875
+  }
+}

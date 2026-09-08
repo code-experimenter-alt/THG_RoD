@@ -1,0 +1,5 @@
+component,n,pearson_r,spearman_rho,min,max,incremental_model
+bal_acc,3,0.9962709627734357,1.0,0.19166666666666665,0.24166666666666664,not_estimable (n=3; four correlated predictors)
+macro_f1,3,-0.9709800903683394,-1.0,0.16182091182091182,0.16952160326773327,not_estimable (n=3; four correlated predictors)
+anti_majority,3,-0.7352353000373674,-0.5,0.31666666666666665,0.5416666666666667,not_estimable (n=3; four correlated predictors)
+composite_equal,3,-0.6268522965334234,-0.5,0.23727678571428576,0.3009516455336889,not_estimable (n=3; four correlated predictors)

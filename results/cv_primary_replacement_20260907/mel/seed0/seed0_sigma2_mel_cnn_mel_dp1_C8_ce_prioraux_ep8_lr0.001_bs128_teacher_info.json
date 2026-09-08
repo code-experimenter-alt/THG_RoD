@@ -1,0 +1,31 @@
+{
+  "dp": true,
+  "sigma": 2.0,
+  "epsilon": 1.0327817688693923,
+  "delta": 1e-05,
+  "best_epoch": 1,
+  "best_dev_macro_f1": 0.25034333921914853,
+  "grad_stats": null,
+  "accountant": {
+    "sample_rate": 0.029411764705882353,
+    "dataset_size": 4340,
+    "nominal_batch_size": 128,
+    "steps": 272,
+    "accountant": "prv",
+    "history": [
+      [
+        2.0,
+        0.029411764705882353,
+        272
+      ]
+    ],
+    "sampling": "poisson",
+    "adjacency": "add_remove_one_training_record"
+  },
+  "class_counts_source": "aux",
+  "class_counts": [
+    842.0,
+    22.0,
+    1510.0
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "seed": 0,
+  "loss": "balanced_softmax",
+  "initial_state": "01fae52901349e2bdfa87f9a9b9b880556929cc1ddfe8a66a6ec0dc2dbc7488d",
+  "info": {
+    "dp": false,
+    "sigma": 0.0,
+    "epsilon": 0.0,
+    "delta": 1e-05,
+    "best_epoch": 2,
+    "best_dev_macro_f1": 0.11748038360941587,
+    "grad_stats": null,
+    "accountant": null
+  },
+  "test": {
+    "acc": 0.25,
+    "bal_acc": 0.25,
+    "macro_f1": 0.11528749028749027,
+    "maj_pred": 0.9416666666666667,
+    "per_class_recall": [
+      0.03333333333333333,
+      0.9666666666666667,
+      0.0,
+      0.0
+    ],
+    "pred_counts": [
+      6,
+      113,
+      1,
+      0
+    ],
+    "confusion": [
+      [
+        1,
+        29,
+        0,
+        0
+      ],
+      [
+        1,
+        29,
+        0,
+        0
+      ],
+      [
+        3,
+        27,
+        0,
+        0
+      ],
+      [
+        1,
+        28,
+        1,
+        0
+      ]
+    ],
+    "entropy_mean": 0.9965900182723999,
+    "pmax_mean": 0.5214449167251587
+  }
+}

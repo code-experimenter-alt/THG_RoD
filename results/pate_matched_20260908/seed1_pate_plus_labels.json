@@ -1,0 +1,54 @@
+{
+  "seed": 1,
+  "mode": "pate_plus_labels",
+  "alpha_noisy_label": 0.7,
+  "initial_state": "6c050a521b2e5d3c420e5c1162c205340b888371b1b1a39473805531eea0989d",
+  "best_epoch": 1,
+  "student_test": {
+    "acc": 0.35,
+    "bal_acc": 0.35,
+    "macro_f1": 0.23333333333333334,
+    "maj_pred": 0.5,
+    "per_class_recall": [
+      0.0,
+      0.7,
+      0.7,
+      0.0
+    ],
+    "pred_counts": [
+      0,
+      60,
+      60,
+      0
+    ],
+    "confusion": [
+      [
+        0,
+        21,
+        9,
+        0
+      ],
+      [
+        0,
+        21,
+        9,
+        0
+      ],
+      [
+        0,
+        9,
+        21,
+        0
+      ],
+      [
+        0,
+        9,
+        21,
+        0
+      ]
+    ],
+    "entropy_mean": 0.6549283862113953,
+    "pmax_mean": 0.6175532937049866
+  },
+  "hard_reference": null
+}
